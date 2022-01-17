@@ -1,8 +1,8 @@
-%% МОДЕЛИРОВАНИЕ ДВИЖЕНИЯ
-eta0 = [0, 0, -15, 0, 0, 0]'; % начальная глубина 15 метров
+%% РњРћР”Р•Р›РР РћР’РђРќРР• Р”Р’РР–Р•РќРРЇ
+eta0 = [0, 0, -15, 0, 0, 0]'; % РЅР°С‡Р°Р»СЊРЅР°СЏ РіР»СѓР±РёРЅР° 15 РјРµС‚СЂРѕРІ
 v0 = [0, 0, 0, 0, 0, 0]'; 
 
-u = [10, 20, -20, 0, 0, pi/4]'; % уставка
+u = [10, 20, -20, 0, 0, pi/4]'; % СѓСЃС‚Р°РІРєР°
 
 t_end = 1500; dt = 0.01;
 
@@ -15,31 +15,31 @@ for i=1:6
     hold on
 end
 legend('\tau_1(t)','\tau_2(t)','\tau_3(t)','\tau_4(t)','\tau_5(t)','\tau_6(t)')
-xlabel('t, сек'), ylabel('Силы и моменты')
+xlabel('t, СЃРµРє'), ylabel('РЎРёР»С‹ Рё РјРѕРјРµРЅС‚С‹')
 xlim([0 t_end])
 
-%% ПОСТРОЕНИЯ ГРАФИКОВ
+%% РџРћРЎРўР РћР•РќРРЇ Р“Р РђР¤РРљРћР’
 figure
 v = Y(:,7:end);
-subplot(2,2,1), title('Скорости (линейные)'), hold on, grid on
-plot(t, v(:,1:3)), xlabel('t, сек'), ylabel('Скорость, м/c'), xlim([0 t_end])
+subplot(2,2,1), title('РЎРєРѕСЂРѕСЃС‚Рё (Р»РёРЅРµР№РЅС‹Рµ)'), hold on, grid on
+plot(t, v(:,1:3)), xlabel('t, СЃРµРє'), ylabel('РЎРєРѕСЂРѕСЃС‚СЊ, Рј/c'), xlim([0 t_end])
 legend('u(t)', 'v(t)', 'w(t)', 'Location', 'Best')
-subplot(2,2,2), title('Скорости (угловые)'), hold on, grid on
-plot(t, v(:,4:end)), xlabel('t, сек'), ylabel('Скорость, рад/c'), xlim([0 t_end])
+subplot(2,2,2), title('РЎРєРѕСЂРѕСЃС‚Рё (СѓРіР»РѕРІС‹Рµ)'), hold on, grid on
+plot(t, v(:,4:end)), xlabel('t, СЃРµРє'), ylabel('РЎРєРѕСЂРѕСЃС‚СЊ, СЂР°Рґ/c'), xlim([0 t_end])
 legend('p(t)', 'q(t)', 'r(t)', 'Location', 'Best')
 eta = Y(:,1:6);
-subplot(2,2,3), title('Положения (по осям)'), hold on, grid on
-plot(t, eta(:,1:3)), xlabel('t, сек'), ylabel('Положения, м'), xlim([0 t_end])
+subplot(2,2,3), title('РџРѕР»РѕР¶РµРЅРёСЏ (РїРѕ РѕСЃСЏРј)'), hold on, grid on
+plot(t, eta(:,1:3)), xlabel('t, СЃРµРє'), ylabel('РџРѕР»РѕР¶РµРЅРёСЏ, Рј'), xlim([0 t_end])
 legend('x(t)', 'y(t)', 'z(t)', 'Location', 'Best')
-subplot(2,2,4), title('Положения (углы Эйлера)'), hold on, grid on
-plot(t, eta(:,4:end)), xlabel('t, сек'), ylabel('Положения, рад'), xlim([0 t_end])
+subplot(2,2,4), title('РџРѕР»РѕР¶РµРЅРёСЏ (СѓРіР»С‹ Р­Р№Р»РµСЂР°)'), hold on, grid on
+plot(t, eta(:,4:end)), xlabel('t, СЃРµРє'), ylabel('РџРѕР»РѕР¶РµРЅРёСЏ, СЂР°Рґ'), xlim([0 t_end])
 legend('\phi(t)', '\theta(t)', '\psi(t)', 'Location', 'Best')
 
-figure, plot3(eta(:,1), eta(:,2), eta(:,3)), title('Позиционирование AUV')
+figure, plot3(eta(:,1), eta(:,2), eta(:,3)), title('РџРѕР·РёС†РёРѕРЅРёСЂРѕРІР°РЅРёРµ AUV')
 hold on
 plot3(eta(end,1), eta(end,2), eta(end,3), 'gO') 
 plot3(u(1), u(2), u(3), 'rO') 
-legend('траектория AUV', 'конечная точка', 'уставка', 'Location', 'Best')
+legend('С‚СЂР°РµРєС‚РѕСЂРёСЏ AUV', 'РєРѕРЅРµС‡РЅР°СЏ С‚РѕС‡РєР°', 'СѓСЃС‚Р°РІРєР°', 'Location', 'Best')
 xlabel('x(t)'), ylabel('y(t)'), zlabel('z(t)'), grid on
 set(gca, 'YDir', 'reverse');
 view([-1,1,1])
