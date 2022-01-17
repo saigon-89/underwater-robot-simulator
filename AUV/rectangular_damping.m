@@ -1,4 +1,4 @@
-function B = rectangular_damping(L, H, W, rho, PF, PS, PT, M_RB, M_A, B, r_g_c, r_b_c)
+function [BL, BQ] = rectangular_damping(L, H, W, rho, PF, PS, PT, M_RB, M_A, B, r_g_c, r_b_c)
     
     %% INPUT VALUES
     lambda = 0.16; % scaling linear/quadratic
@@ -80,8 +80,6 @@ function B = rectangular_damping(L, H, W, rho, PF, PS, PT, M_RB, M_A, B, r_g_c, 
     BL(2,2)=BQ(2,2)*lambda0;
     BL(3,3)=BQ(3,3)*lambda0;
     BL(6,6)=BQ(6,6)*lambda1;
-    
-    B = BL + BQ;
     
 end
 
