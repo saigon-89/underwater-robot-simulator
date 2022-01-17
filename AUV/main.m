@@ -68,7 +68,8 @@ g = @(eta)([ 0;
     -(r_g_c(1)*B-r_b_c(1)*B)*cos(eta(5))*sin(eta(4)) - (r_g_c(2)*B-r_b_c(2)*B)*sin(eta(5)) ]); % (1.10)
 
 %% РАСЧЕТ D(v)
-D = @(v)(rectangular_damping(L, H, W, rho, PF, PS, PT, M_RB, M_A, B, r_g_c, r_b_c).*v); % [6]
+[D_LIN, D_QUAD] = rectangular_damping(L, H, W, rho, PF, PS, PT, M_RB, M_A, B, r_g_c, r_b_c);
+D = @(v)(D_LIN + D_QUAD.*abs(v)); % [6]
 
 %% ВЫВОД РЕЗУЛЬТАТОВ
 disp('Матрица M:')
