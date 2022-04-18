@@ -4,9 +4,26 @@ function dy = odefcn(t,y,M,C,D,g,tau)
 % D - AUV damping matrix
 % g - AUV gravity vector
 % tau - UVMS forces/moments vector
+% 
+% Y is the state vector = [eta v];
+% v is 6-vector of velocities:
+% - u(t), v(t), w(t) - Linear Velocities, m/sec
+% - p(t), q(t), r(t) - Angular Velocities, rad/sec
+% 
+% eta is 6-vector of Positions:
+% - x(t), y(t), z(t) - Linear Positions, m
+% - \phi(t), \theta(t), \psi(t) - Positions (Euler angles), rad
+% 
+% [t,Y] = ode45(@(t,y)odefcn(t,y,M,C,D,g,tau), 0:dt:t_end, [eta0; v0]);
+% v = Y(:,7:end);
+% eta = Y(:,1:6);
+%
 
-    eta = y(1:6); q = y(13:14); v = y(7:12); dq = y(15:16); 
-    n = (numel(y) - 12) / 2; % manipulator links
+eta = y(1:6); 
+v = y(7:12); 
+q = y(13:14); 
+dq = y(15:16); 
+n = (numel(y) - 12) / 2; % manipulator links
 
 %     M_full = [ M,          zeros(6,n);
 %                zeros(n,6), get_M([q]) ];
